@@ -10,7 +10,7 @@ print('Anytime type in #S for source code and #R for rule. ')
 
 class Gomoku:
     def __init__(self):
-        self.progress = 0
+        self.progress = 1  # Black Start
         self.winner = None
         self.isEndGame = None
         self.x_data = list()
@@ -52,7 +52,6 @@ class Gomoku:
         self.isEndGame = 0
         self.errorcode = ''
         while self.isEndGame == 0:
-            self.progress += 1
             if self.progress % 2 == 1:  ## Black start
                 isInputOK = False
                 while isInputOK == False:
@@ -60,26 +59,12 @@ class Gomoku:
                     # rule or sourcecode?
                     if blackRawInput == '#S':
                         print(sourcecode)
-                        blackRawInput = str(input('Please type in your selection as Black. Input example: 6, 9\n'))
+                        gomo.play()
                     elif blackRawInput == '#R':
-                        print("""
-                        ##### Rule ##### \n\n
-                        <BASICS>\n
-                        - Input Should be 2 numbers between 1 and 15, separated by comma (,).\n
-                        - Location should be in (1, 1) and (15, 15) range. \n
-                        - You can't place stone on already selected positions. \n
-                        <Renju RULES>\n
-                        - Black starts first. (Therefore, it will get penalties)
-                        - This program runs under Renju Rule, a national rule of Gomoku.\n
-                        - Black Can't make multiple sangoku(3-stone row) at one time. \n
-                        - Black Can't make a longer row than gomoku. Ex) Rokugoku, Nanagoku, Hachigoku, Kyugoku (6~9-stone row) \n
-                        - Black may make multiple Sangokus if they're made continuously, one by one. \n
-                        - White has no limitations.
-                        * It is known that Renju rule has 58% winrate for Black. However, without Renju Rule, black has 80% of winrate. \n
-                        Have Fun!
-                        """)
-                        blackRawInput = str(input('Please type in your selection as Black. Input example: 6, 9\n'))
+                        gomo.printRule()
+                        gomo.play()
                     else:
+                        self.progress += 1
                         pass
                     try:
                         blackInput = blackRawInput.replace(' ', '').split(',')
@@ -270,29 +255,15 @@ class Gomoku:
             elif self.progress % 2 == 0:  # WHITE
                 isInputOK = False
                 while isInputOK == False:
-                    whiteRawInput = str(input('Please type in your selection as White. Input example: 7, 12'))
+                    whiteRawInput = str(input('Please type in your selection as White. Input example: 7, 12 \n'))
                     # rule or sourcecode?
                     if whiteRawInput == '#S':
                         print(sourcecode)
-                        whiteRawInput = str(input('Please type in your selection as Black. Input example: 6, 9\n'))
+                        gomo.play()
                     elif whiteRawInput == '#R':
-                        print("""
-                        ##### Rule ##### \n\n
-                        <BASICS>\n
-                        - Input Should be 2 numbers between 1 and 15, separated by comma (,).\n
-                        - Location should be in (1, 1) and (15, 15) range. \n
-                        - You can't place stone on already selected positions. \n
-                        <Renju RULES>\n
-                        - Black starts first. (Therefore, it will get penalties)
-                        - This program runs under Renju Rule, a national rule of Gomoku.\n
-                        - Black Can't make multiple sangoku(3-stone row) at one time. \n
-                        - Black Can't make a longer row than gomoku. Ex) Rokugoku, Nanagoku, Hachigoku, Kyugoku (6~9-stone row) \n
-                        - Black may make multiple Sangokus if they're made continuously, one by one. \n
-                        - White has no limitations.
-                        * It is known that Renju rule has 58% winrate for Black. However, without Renju Rule, black has 80% of winrate. \n
-                        Have Fun!
-                        """)
-                        whiteRawInput = str(input('Please type in your selection as Black. Input example: 6, 9\n'))
+                        gomo.printRule()
+                        gomo.play()
+                    self.progress += 1
                     try:
                         whiteInput = whiteRawInput.replace(' ', '').split(',')
                         check = int(whiteInput[0]) * int(whiteInput[1])
@@ -362,6 +333,28 @@ class Gomoku:
         elif self.isEndGame == 2:
             print('White Wins!')
             input('Press enter to Exit')
+
+    def printSourcecode(self):
+        print(sourcecode)
+
+    def printRule(self):
+        print("""
+                ##### Rule ##### \n\n
+                <BASICS>\n
+                - Input Should be 2 numbers between 1 and 15, separated by comma (,).\n
+                - Location should be in (1, 1) and (15, 15) range. \n
+                - You can't place stone on already selected positions. \n
+                <Renju RULES>\n
+                - Black starts first. (Therefore, it will get penalties)
+                - This program runs under Renju Rule, a national rule of Gomoku.\n
+                - Black Can't make multiple sangoku(3-stone row) at one time. \n
+                - Black Can't make a longer row than gomoku. Ex) Rokugoku, Nanagoku, Hachigoku, Kyugoku (6~9-stone row) \n
+                - Black may make multiple Sangokus if they're made continuously, one by one. \n
+                - White has no limitations.
+                * It is known that Renju rule has 58% winrate for Black. However, without Renju Rule, black has 80% of winrate. \n
+                Have Fun!
+                """)
+
 
 
 gomo = Gomoku()
