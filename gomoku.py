@@ -4,7 +4,7 @@
 ### GOMOKU 2P (CUI) BY BYEONGHYUN PARK
 ### Version 1.1
 
-sourcecode = ''
+sourcecode = 'https://github.com/pyMageia/pyGomoku-1.1'
 print('Anytime type in #S for source code and #R for rule. ')
 
 
