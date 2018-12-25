@@ -182,7 +182,7 @@ class Gomoku:
                         if self.x_data[loc_pointer] == self.x_data[loc_pointer - 14] == self.x_data[loc_pointer - 28]:
                             determiner -= 1000
 
-                        print(determiner, loc_pointer)
+                        # print(determiner, loc_pointer) ##### Debugging
                         whitelist = [0, 1, 10, 100, 1000, -1, -10, -100, -1000]  # whitelist of possible legal 3's
                         if determiner in whitelist:
                             trigger = False
